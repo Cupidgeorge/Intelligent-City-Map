@@ -14,11 +14,16 @@ export function lineFeatures(network: Network): FeatureCollection<LineString> {
   const features: FeatureCollection<LineString>["features"] = []
 
   for (const line of network.lines) {
-    line.paths.forEach((path, index) => {
-      const coordinates = path.flatMap((code) => {
-        const station = stations.get(code)
-        return station ? [[station.lon, station.lat] as [number, number]] : []
-      })
+    const curved = (line.tracks ?? []).filter((track) => track.length >= 2)
+    const pieces = curved.length
+      ? curved
+      : line.paths.map((path) =>
+          path.flatMap((code) => {
+            const station = stations.get(code)
+            return station ? [[station.lon, station.lat] as [number, number]] : []
+          }),
+        )
+    pieces.forEach((coordinates, index) => {
       if (coordinates.length < 2) return
       features.push({
         type: "Feature",
@@ -27,7 +32,7 @@ export function lineFeatures(network: Network): FeatureCollection<LineString> {
           code: line.code,
           nameZh: line.nameZh,
           color: line.color,
-          offset: line.offset,
+          offset: curved.length ? 0 : line.offset,
         },
         geometry: { type: "LineString", coordinates },
       })

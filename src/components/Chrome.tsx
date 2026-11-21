@@ -120,7 +120,7 @@ export function Chrome({
             )
           })}
         </div>
-        <p className="sources">OpenFreeMap 底圖 · 港鐵班次 · 運輸署快拍 · 地政總署車站位置</p>
+        <p className="sources">OpenFreeMap 底圖 · 路軌形狀 OpenStreetMap · 港鐵班次 · 運輸署快拍</p>
       </section>
     </div>
   )

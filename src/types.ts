@@ -15,6 +15,7 @@ export type RailLine = {
   color: string
   offset: number
   paths: string[][]
+  tracks?: [number, number][][]
 }
 
 export type Network = {
