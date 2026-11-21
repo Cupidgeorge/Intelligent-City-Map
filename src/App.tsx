@@ -3,6 +3,7 @@ import { Chrome } from "./components/Chrome.tsx"
 import { DetailPanel } from "./components/DetailPanel.tsx"
 import { MapView } from "./components/MapView.tsx"
 import { loadCameras } from "./lib/cameras.ts"
+import { pollTrains, type TrainMarker } from "./lib/liveTrains.ts"
 import type { Camera, MapFocus, Network, Selection, Station } from "./types.ts"
 
 type CameraState = "loading" | "live" | "backup" | "error"
@@ -17,6 +18,8 @@ export default function App() {
   const [selection, setSelection] = useState<Selection | null>(null)
   const [focus, setFocus] = useState<MapFocus | null>(null)
   const [basemapProblem, setBasemapProblem] = useState(false)
+  const [trains, setTrains] = useState<TrainMarker[]>([])
+  const [trainNote, setTrainNote] = useState("正在按到站時間推算列車位置…")
 
   useEffect(() => {
     void fetch("/data/network.json")
@@ -39,6 +42,33 @@ export default function App() {
       })
       .catch(() => setCameraState("error"))
   }, [])
+
+  useEffect(() => {
+    if (!network) return
+    const controller = new AbortController()
+    let timer = 0
+    const tick = async () => {
+      try {
+        const next = await pollTrains(network, controller.signal)
+        if (controller.signal.aborted) return
+        setTrains(next)
+        setTrainNote(
+          next.length > 0
+            ? "箭咀是按官方到站時間沿路軌推算的位置，不是列車衛星定位。"
+            : "現時推算不到行駛中的列車。可能已過尾班車。",
+        )
+      } catch (error) {
+        if (controller.signal.aborted || (error instanceof DOMException && error.name === "AbortError")) return
+        setTrainNote("列車位置暫時更新不到。到站班次仍可點車站查看。")
+      }
+      if (!controller.signal.aborted) timer = window.setTimeout(() => void tick(), 45000)
+    }
+    void tick()
+    return () => {
+      controller.abort()
+      window.clearTimeout(timer)
+    }
+  }, [network])
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -85,6 +115,8 @@ export default function App() {
         onClear={() => setSelection(null)}
         onBasemapProblem={() => setBasemapProblem(true)}
         onBasemapReady={() => setBasemapProblem(false)}
+        trains={trains}
+        onSelectTrain={(id) => setSelection({ type: "train", id })}
       />
       <Chrome
         network={network}
@@ -92,6 +124,7 @@ export default function App() {
         camerasOn={camerasOn}
         cameraCount={cameras.length}
         cameraState={cameraState}
+        trainNote={trainNote}
         onToggleLine={(code) =>
           setVisibleLines((current) =>
             current.includes(code) ? current.filter((item) => item !== code) : [...current, code],
@@ -104,6 +137,7 @@ export default function App() {
         <DetailPanel
           network={network}
           cameras={cameras}
+          trains={trains}
           selection={selection}
           onClose={() => setSelection(null)}
         />

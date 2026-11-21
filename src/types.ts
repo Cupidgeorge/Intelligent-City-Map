@@ -45,6 +45,7 @@ export type CameraFile = {
 export type Selection =
   | { type: "station"; code: string }
   | { type: "camera"; key: string }
+  | { type: "train"; id: string }
 
 export type MapFocus = {
   lon: number

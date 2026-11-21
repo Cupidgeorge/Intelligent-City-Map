@@ -7,6 +7,7 @@ type ChromeProps = {
   camerasOn: boolean
   cameraCount: number
   cameraState: "loading" | "live" | "backup" | "error"
+  trainNote: string
   onToggleLine: (code: string) => void
   onToggleCameras: () => void
   onPickStation: (station: Station) => void
@@ -18,6 +19,7 @@ export function Chrome({
   camerasOn,
   cameraCount,
   cameraState,
+  trainNote,
   onToggleLine,
   onToggleCameras,
   onPickStation,
@@ -121,6 +123,7 @@ export function Chrome({
           })}
         </div>
         <p className="sources">OpenFreeMap 底圖 · 路軌形狀 OpenStreetMap · 港鐵班次 · 運輸署快拍</p>
+        <p className="sources">{trainNote}</p>
       </section>
     </div>
   )

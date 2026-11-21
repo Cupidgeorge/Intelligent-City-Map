@@ -3,6 +3,7 @@ import { GeoJSONSource, Map, NavigationControl, setWorkerUrl } from "maplibre-gl
 import type { FilterSpecification, MapMouseEvent } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import { cameraFeatures, lineFeatures, stationFeatures } from "../lib/geo.ts"
+import { trainPoint, type TrainMarker } from "../lib/liveTrains.ts"
 import type { Camera, MapFocus, Network, Selection } from "../types.ts"
 
 setWorkerUrl(workerUrl)
@@ -22,6 +23,8 @@ type MapViewProps = {
   onClear: () => void
   onBasemapProblem: () => void
   onBasemapReady: () => void
+  trains: TrainMarker[]
+  onSelectTrain: (id: string) => void
 }
 
 function lineFilter(visibleLines: string[]): FilterSpecification {
@@ -49,6 +52,8 @@ export function MapView({
   onClear,
   onBasemapProblem,
   onBasemapReady,
+  trains,
+  onSelectTrain,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<Map | null>(null)
@@ -58,13 +63,25 @@ export function MapView({
   const handlers = useRef({
     onSelectStation,
     onSelectCamera,
+    onSelectTrain,
     onClear,
     onBasemapProblem,
     onBasemapReady,
   })
+  const trainsRef = useRef(trains)
+  const visibleRef = useRef(visibleLines)
   camerasRef.current = cameras
   camerasOnRef.current = camerasVisible
-  handlers.current = { onSelectStation, onSelectCamera, onClear, onBasemapProblem, onBasemapReady }
+  trainsRef.current = trains
+  visibleRef.current = visibleLines
+  handlers.current = {
+    onSelectStation,
+    onSelectCamera,
+    onSelectTrain,
+    onClear,
+    onBasemapProblem,
+    onBasemapReady,
+  }
 
   useEffect(() => {
     const container = containerRef.current
@@ -164,6 +181,37 @@ export function MapView({
           "circle-stroke-width": 1.5,
         },
       })
+      map.addSource("trains", { type: "geojson", data: { type: "FeatureCollection", features: [] } })
+      map.addLayer({
+        id: "train-dots",
+        type: "circle",
+        source: "trains",
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 4.5, 14, 7],
+          "circle-color": "#fffdf8",
+          "circle-stroke-width": 3,
+          "circle-stroke-color": ["get", "color"],
+        },
+      })
+      map.addLayer({
+        id: "trains",
+        type: "symbol",
+        source: "trains",
+        layout: {
+          "text-field": "▲",
+          "text-font": ["Noto Sans Bold"],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 9, 11, 15, 16],
+          "text-rotate": ["get", "bearing"],
+          "text-rotation-alignment": "map",
+          "text-allow-overlap": true,
+          "text-ignore-placement": true,
+        },
+        paint: {
+          "text-color": ["get", "color"],
+          "text-halo-color": "#fffdf8",
+          "text-halo-width": 1.6,
+        },
+      })
       map.addLayer({
         id: "stations",
         type: "circle",
@@ -213,6 +261,29 @@ export function MapView({
       setMapReady(true)
     })
 
+    let frame = 0
+    const drawTrains = () => {
+      const source = map.getSource("trains")
+      if (source instanceof GeoJSONSource) {
+        const visible = new Set(visibleRef.current)
+        source.setData({
+          type: "FeatureCollection",
+          features: trainsRef.current
+            .filter((train) => visible.has(train.line))
+            .map((train) => {
+              const point = trainPoint(train)
+              return {
+                type: "Feature" as const,
+                properties: { id: train.id, color: train.color, bearing: point.bearing },
+                geometry: { type: "Point" as const, coordinates: [point.lon, point.lat] },
+              }
+            }),
+        })
+      }
+      frame = window.requestAnimationFrame(drawTrains)
+    }
+    frame = window.requestAnimationFrame(drawTrains)
+
     map.on("click", (event: MapMouseEvent) => {
       if (!map.getLayer("stations")) return
       const station = map.queryRenderedFeatures(event.point, { layers: ["stations"] })[0]
@@ -220,6 +291,14 @@ export function MapView({
       if (typeof stationCode === "string") {
         handlers.current.onSelectStation(stationCode)
         return
+      }
+      if (map.getLayer("trains")) {
+        const train = map.queryRenderedFeatures(event.point, { layers: ["trains", "train-dots"] })[0]
+        const trainId = train?.properties?.id
+        if (typeof trainId === "string") {
+          handlers.current.onSelectTrain(trainId)
+          return
+        }
       }
 
       if (camerasOnRef.current) {
@@ -251,7 +330,9 @@ export function MapView({
 
     map.on("mousemove", (event: MapMouseEvent) => {
       if (!map.getLayer("stations")) return
-      const layers = camerasOnRef.current ? INTERACTIVE : ["stations"]
+      const layers = ["stations", "trains", "train-dots", ...(camerasOnRef.current ? INTERACTIVE.slice(1) : [])].filter(
+        (layer) => map.getLayer(layer),
+      )
       const hits = map.queryRenderedFeatures(event.point, { layers })
       map.getCanvas().style.cursor = hits.length > 0 ? "pointer" : ""
     })
@@ -260,6 +341,7 @@ export function MapView({
     observer.observe(container)
 
     return () => {
+      window.cancelAnimationFrame(frame)
       observer.disconnect()
       setMapReady(false)
       map.remove()

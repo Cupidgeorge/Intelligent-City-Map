@@ -9,6 +9,7 @@ import {
   type LineSchedule,
   type Train,
 } from "../lib/schedule.ts"
+import { trainPoint, type TrainMarker } from "../lib/liveTrains.ts"
 import type { Camera, Network, Selection } from "../types.ts"
 
 type DetailPanelProps = {
@@ -18,7 +19,13 @@ type DetailPanelProps = {
   onClose: () => void
 }
 
-export function DetailPanel({ network, cameras, selection, onClose }: DetailPanelProps) {
+export function DetailPanel({
+  network,
+  cameras,
+  trains,
+  selection,
+  onClose,
+}: DetailPanelProps & { trains: TrainMarker[] }) {
   return (
     <aside className="panel" aria-live="polite">
       <button type="button" className="close" onClick={onClose}>
@@ -26,10 +33,38 @@ export function DetailPanel({ network, cameras, selection, onClose }: DetailPane
       </button>
       {selection.type === "station" ? (
         <StationDetail network={network} code={selection.code} />
-      ) : (
+      ) : selection.type === "camera" ? (
         <CameraDetail cameras={cameras} cameraKey={selection.key} />
+      ) : (
+        <TrainDetail trains={trains} trainId={selection.id} />
       )}
     </aside>
+  )
+}
+
+function TrainDetail({ trains, trainId }: { trains: TrainMarker[]; trainId: string }) {
+  const train = trains.find((item) => item.id === trainId)
+  if (!train) {
+    return (
+      <div className="panel-body">
+        <h2>這班車的推算已更新</h2>
+        <p>請再在地圖上點選箭咀。</p>
+      </div>
+    )
+  }
+  const point = trainPoint(train)
+  return (
+    <div className="panel-body">
+      <p className="eyebrow">推算列車</p>
+      <h2>往{train.destName}</h2>
+      <p>
+        約 {train.minutes <= 0 ? "即將" : `${train.minutes} 分鐘後`}到達{train.nextName}
+      </p>
+      <p className="note">
+        位置是按港鐵到站時間，放在真實路軌上推算出來的，不是列車的衛星定位。目前約在{" "}
+        {point.lat.toFixed(4)}，{point.lon.toFixed(4)}。
+      </p>
+    </div>
   )
 }
 
