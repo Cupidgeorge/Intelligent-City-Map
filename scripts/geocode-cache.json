@@ -1,0 +1,590 @@
+{
+  "馬場": {
+    "x": 838935.0,
+    "y": 828991.0,
+    "nameZH": "港鐵馬場站",
+    "nameEN": "MTR Racecourse Station"
+  },
+  "博覽館": {
+    "x": 811990.0,
+    "y": 820323.0,
+    "nameZH": "港鐵博覽館站",
+    "nameEN": "MTR AsiaWorld-Expo Station"
+  },
+  "機場": {
+    "x": 811500.0,
+    "y": 819678.0,
+    "nameZH": "港鐵機場站",
+    "nameEN": "MTR Airport Station"
+  },
+  "青衣": {
+    "x": 829100.0,
+    "y": 824364.0,
+    "nameZH": "港鐵青衣站",
+    "nameEN": "MTR Tsing Yi Station"
+  },
+  "九龍": {
+    "x": 834678.0,
+    "y": 818367.0,
+    "nameZH": "港鐵九龍站",
+    "nameEN": "MTR Kowloon Station"
+  },
+  "香港": {
+    "x": 834346.0,
+    "y": 816198.0,
+    "nameZH": "港鐵香港站",
+    "nameEN": "MTR Hong Kong Station"
+  },
+  "欣澳": {
+    "x": 821038.0,
+    "y": 821459.0,
+    "nameZH": "港鐵欣澳站",
+    "nameEN": "MTR Sunny Bay Station"
+  },
+  "迪士尼": {
+    "x": 822665.0,
+    "y": 819617.0,
+    "nameZH": "港鐵迪士尼站",
+    "nameEN": "MTR Disneyland Resort Station"
+  },
+  "羅湖": {
+    "x": 829721.0,
+    "y": 843105.0,
+    "nameZH": "港鐵羅湖站",
+    "nameEN": "MTR Lo Wu Station"
+  },
+  "上水": {
+    "x": 831191.0,
+    "y": 840223.0,
+    "nameZH": "港鐵上水站",
+    "nameEN": "MTR Sheung Shui Station"
+  },
+  "粉嶺": {
+    "x": 832337.0,
+    "y": 839169.0,
+    "nameZH": "港鐵粉嶺站",
+    "nameEN": "MTR Fanling Station"
+  },
+  "太和": {
+    "x": 834653.0,
+    "y": 834625.0,
+    "nameZH": "港鐵太和站",
+    "nameEN": "MTR Tai Wo Station"
+  },
+  "大埔墟": {
+    "x": 835601.0,
+    "y": 833906.0,
+    "nameZH": "港鐵大埔墟站",
+    "nameEN": "MTR Tai Po Market Station"
+  },
+  "大學": {
+    "x": 839683.0,
+    "y": 830482.0,
+    "nameZH": "港鐵大學站",
+    "nameEN": "MTR University Station"
+  },
+  "火炭": {
+    "x": 838495.0,
+    "y": 828507.0,
+    "nameZH": "港鐵火炭站",
+    "nameEN": "MTR Fo Tan Station"
+  },
+  "沙田": {
+    "x": 837302.0,
+    "y": 826990.0,
+    "nameZH": "港鐵沙田站",
+    "nameEN": "MTR Sha Tin Station"
+  },
+  "大圍": {
+    "x": 836455.0,
+    "y": 825953.0,
+    "nameZH": "港鐵大圍站",
+    "nameEN": "MTR Tai Wai Station"
+  },
+  "九龍塘": {
+    "x": 836155.0,
+    "y": 822006.0,
+    "nameZH": "港鐵九龍塘站",
+    "nameEN": "MTR Kowloon Tong Station"
+  },
+  "旺角東": {
+    "x": 835827.0,
+    "y": 820334.0,
+    "nameZH": "港鐵旺角東站",
+    "nameEN": "MTR Mong Kok East Station"
+  },
+  "紅磡": {
+    "x": 836815.0,
+    "y": 818227.0,
+    "nameZH": "港鐵紅磡站",
+    "nameEN": "MTR Hung Hom Station"
+  },
+  "會展": {
+    "x": 836107.0,
+    "y": 815864.0,
+    "nameZH": "港鐵會展站",
+    "nameEN": "MTR Exhibition Centre Station"
+  },
+  "金鐘": {
+    "x": 834977.0,
+    "y": 815617.0,
+    "nameZH": "港鐵金鐘站",
+    "nameEN": "MTR Admiralty Station"
+  },
+  "落馬洲": {
+    "x": 824829.0,
+    "y": 841649.0,
+    "nameZH": "港鐵落馬洲站",
+    "nameEN": "MTR Lok Ma Chau Station"
+  },
+  "柴灣": {
+    "x": 842476.0,
+    "y": 813975.0,
+    "nameZH": "港鐵柴灣站",
+    "nameEN": "MTR Chai Wan Station"
+  },
+  "杏花邨": {
+    "x": 842744.0,
+    "y": 815310.0,
+    "nameZH": "港鐵杏花邨站",
+    "nameEN": "MTR Heng Fa Chuen Station"
+  },
+  "筲箕灣": {
+    "x": 841635.0,
+    "y": 815597.0,
+    "nameZH": "港鐵筲箕灣站",
+    "nameEN": "MTR Shau Kei Wan Station"
+  },
+  "西灣河": {
+    "x": 840900.0,
+    "y": 815923.0,
+    "nameZH": "港鐵西灣河站",
+    "nameEN": "MTR Sai Wan Ho Station"
+  },
+  "太古": {
+    "x": 840350.0,
+    "y": 816197.0,
+    "nameZH": "港鐵太古站",
+    "nameEN": "MTR Tai Koo Station"
+  },
+  "鰂魚涌": {
+    "x": 839548.0,
+    "y": 816630.0,
+    "nameZH": "港鐵鰂魚涌站",
+    "nameEN": "MTR Quarry Bay Station"
+  },
+  "北角": {
+    "x": 838691.0,
+    "y": 816919.0,
+    "nameZH": "港鐵北角站",
+    "nameEN": "MTR North Point Station"
+  },
+  "炮台山": {
+    "x": 837991.0,
+    "y": 816557.0,
+    "nameZH": "港鐵炮台山站",
+    "nameEN": "MTR Fortress Hill Station"
+  },
+  "天后": {
+    "x": 837811.0,
+    "y": 815929.0,
+    "nameZH": "港鐵天后站",
+    "nameEN": "MTR Tin Hau Station"
+  },
+  "銅鑼灣": {
+    "x": 837027.0,
+    "y": 815702.0,
+    "nameZH": "港鐵銅鑼灣站",
+    "nameEN": "MTR Causeway Bay Station"
+  },
+  "灣仔": {
+    "x": 835831.0,
+    "y": 815410.0,
+    "nameZH": "港鐵灣仔站",
+    "nameEN": "MTR Wan Chai Station"
+  },
+  "中環": {
+    "x": 834290.0,
+    "y": 815919.0,
+    "nameZH": "港鐵中環站",
+    "nameEN": "MTR Central Station"
+  },
+  "上環": {
+    "x": 833706.0,
+    "y": 816412.0,
+    "nameZH": "港鐵上環站",
+    "nameEN": "MTR Sheung Wan Station"
+  },
+  "西營盤": {
+    "x": 832746.0,
+    "y": 816292.0,
+    "nameZH": "港鐵西營盤站",
+    "nameEN": "MTR Sai Ying Pun Station"
+  },
+  "香港大學": {
+    "x": 832010.0,
+    "y": 816130.0,
+    "nameZH": "港鐵香港大學站",
+    "nameEN": "MTR HKU Station"
+  },
+  "堅尼地城": {
+    "x": 831272.0,
+    "y": 815816.0,
+    "nameZH": "港鐵堅尼地城站",
+    "nameEN": "MTR Kennedy Town Station"
+  },
+  "調景嶺": {
+    "x": 844075.0,
+    "y": 818369.0,
+    "nameZH": "港鐵調景嶺站",
+    "nameEN": "MTR Tiu Keng Leng Station"
+  },
+  "油塘": {
+    "x": 842464.0,
+    "y": 817676.0,
+    "nameZH": "港鐵油塘站",
+    "nameEN": "MTR Yau Tong Station"
+  },
+  "藍田": {
+    "x": 842024.0,
+    "y": 818653.0,
+    "nameZH": "港鐵藍田站",
+    "nameEN": "MTR Lam Tin Station"
+  },
+  "觀塘": {
+    "x": 841381.0,
+    "y": 819235.0,
+    "nameZH": "港鐵觀塘站",
+    "nameEN": "MTR Kwun Tong Station"
+  },
+  "牛頭角": {
+    "x": 840606.0,
+    "y": 819613.0,
+    "nameZH": "港鐵牛頭角站",
+    "nameEN": "MTR Ngau Tau Kok Station"
+  },
+  "九龍灣": {
+    "x": 840093.0,
+    "y": 820494.0,
+    "nameZH": "港鐵九龍灣站",
+    "nameEN": "MTR Kowloon Bay Station"
+  },
+  "彩虹": {
+    "x": 839582.0,
+    "y": 821768.0,
+    "nameZH": "港鐵彩虹站",
+    "nameEN": "MTR Choi Hung Station"
+  },
+  "鑽石山": {
+    "x": 838820.0,
+    "y": 822329.0,
+    "nameZH": "港鐵鑽石山站",
+    "nameEN": "MTR Diamond Hill Station"
+  },
+  "黃大仙": {
+    "x": 838019.0,
+    "y": 822511.0,
+    "nameZH": "港鐵黃大仙站",
+    "nameEN": "MTR Wong Tai Sin Station"
+  },
+  "樂富": {
+    "x": 837314.0,
+    "y": 822105.0,
+    "nameZH": "港鐵樂富站",
+    "nameEN": "MTR Lok Fu Station"
+  },
+  "石硤尾": {
+    "x": 835438.0,
+    "y": 821416.0,
+    "nameZH": "港鐵石硤尾站",
+    "nameEN": "MTR Shek Kip Mei Station"
+  },
+  "太子": {
+    "x": 835383.0,
+    "y": 820599.0,
+    "nameZH": "港鐵太子站",
+    "nameEN": "MTR Prince Edward Station"
+  },
+  "旺角": {
+    "x": 835493.0,
+    "y": 820033.0,
+    "nameZH": "港鐵旺角站",
+    "nameEN": "MTR Mong Kok Station"
+  },
+  "油麻地": {
+    "x": 835628.0,
+    "y": 819317.0,
+    "nameZH": "港鐵油麻地站",
+    "nameEN": "MTR Yau Ma Tei Station"
+  },
+  "何文田": {
+    "x": 836857.0,
+    "y": 818935.0,
+    "nameZH": "港鐵何文田站",
+    "nameEN": "MTR Ho Man Tin Station"
+  },
+  "黃埔": {
+    "x": 837603.0,
+    "y": 818428.0,
+    "nameZH": "港鐵黃埔站",
+    "nameEN": "MTR Whampoa Station"
+  },
+  "烏溪沙": {
+    "x": 843163.0,
+    "y": 832199.0,
+    "nameZH": "港鐵烏溪沙站",
+    "nameEN": "MTR Wu Kai Sha Station"
+  },
+  "馬鞍山": {
+    "x": 841941.0,
+    "y": 831729.0,
+    "nameZH": "港鐵馬鞍山站",
+    "nameEN": "MTR Ma On Shan Station"
+  },
+  "恆安": {
+    "x": 841313.0,
+    "y": 830948.0,
+    "nameZH": "港鐵恆安站",
+    "nameEN": "MTR Heng On Station"
+  },
+  "大水坑": {
+    "x": 840976.0,
+    "y": 829877.0,
+    "nameZH": "港鐵大水坑站",
+    "nameEN": "MTR Tai Shui Hang Station"
+  },
+  "石門": {
+    "x": 839527.0,
+    "y": 827627.0,
+    "nameZH": "港鐵石門站",
+    "nameEN": "MTR Shek Mun Station"
+  },
+  "第一城": {
+    "x": 839023.0,
+    "y": 827083.0,
+    "nameZH": "港鐵第一城站",
+    "nameEN": "MTR City One Station"
+  },
+  "沙田圍": {
+    "x": 838115.0,
+    "y": 826413.0,
+    "nameZH": "港鐵沙田圍站",
+    "nameEN": "MTR Sha Tin Wai Station"
+  },
+  "車公廟": {
+    "x": 837196.0,
+    "y": 826175.0,
+    "nameZH": "港鐵車公廟站",
+    "nameEN": "MTR Che Kung Temple Station"
+  },
+  "顯徑": {
+    "x": 835636.0,
+    "y": 824952.0,
+    "nameZH": "港鐵顯徑站",
+    "nameEN": "MTR Hin Keng Station"
+  },
+  "啟德": {
+    "x": 838583.0,
+    "y": 821264.0,
+    "nameZH": "港鐵啟德站",
+    "nameEN": "MTR Kai Tak Station"
+  },
+  "宋皇臺": {
+    "x": 837683.0,
+    "y": 820733.0,
+    "nameZH": "港鐵宋皇臺站",
+    "nameEN": "MTR Sung Wong Toi Station"
+  },
+  "土瓜灣": {
+    "x": 837375.0,
+    "y": 819879.0,
+    "nameZH": "港鐵土瓜灣站",
+    "nameEN": "MTR To Kwa Wan Station"
+  },
+  "尖東": {
+    "x": 836039.0,
+    "y": 817376.0,
+    "nameZH": "港鐵尖東站",
+    "nameEN": "MTR East Tsim Sha Tsui Station"
+  },
+  "柯士甸": {
+    "x": 835180.0,
+    "y": 818440.0,
+    "nameZH": "港鐵柯士甸站",
+    "nameEN": "MTR Austin Station"
+  },
+  "南昌": {
+    "x": 833860.0,
+    "y": 820873.0,
+    "nameZH": "港鐵南昌站",
+    "nameEN": "MTR Nam Cheong Station"
+  },
+  "美孚": {
+    "x": 832097.0,
+    "y": 822097.0,
+    "nameZH": "港鐵美孚站",
+    "nameEN": "MTR Mei Foo Station"
+  },
+  "荃灣西": {
+    "x": 829345.0,
+    "y": 825470.0,
+    "nameZH": "港鐵荃灣西站",
+    "nameEN": "MTR Tsuen Wan West Station"
+  },
+  "錦上路": {
+    "x": 824564.0,
+    "y": 832864.0,
+    "nameZH": "港鐵錦上路站",
+    "nameEN": "MTR Kam Sheung Road Station"
+  },
+  "元朗": {
+    "x": 821681.0,
+    "y": 834078.0,
+    "nameZH": "港鐵元朗站",
+    "nameEN": "MTR Yuen Long Station"
+  },
+  "朗屏": {
+    "x": 820681.0,
+    "y": 834251.0,
+    "nameZH": "港鐵朗屏站",
+    "nameEN": "MTR Long Ping Station"
+  },
+  "天水圍": {
+    "x": 818522.0,
+    "y": 834282.0,
+    "nameZH": "港鐵天水圍站",
+    "nameEN": "MTR Tin Shui Wai Station"
+  },
+  "兆康": {
+    "x": 815874.0,
+    "y": 830259.0,
+    "nameZH": "港鐵兆康站",
+    "nameEN": "MTR Siu Hong Station"
+  },
+  "屯門": {
+    "x": 815294.0,
+    "y": 828442.0,
+    "nameZH": "港鐵屯門站",
+    "nameEN": "MTR Tuen Mun Station"
+  },
+  "東涌": {
+    "x": 811989.0,
+    "y": 816716.0,
+    "nameZH": "港鐵東涌站",
+    "nameEN": "MTR Tung Chung Station"
+  },
+  "荔景": {
+    "x": 831047.0,
+    "y": 823250.0,
+    "nameZH": "港鐵荔景站",
+    "nameEN": "MTR Lai King Station"
+  },
+  "奧運": {
+    "x": 834555.0,
+    "y": 819866.0,
+    "nameZH": "港鐵奧運站",
+    "nameEN": "MTR Olympic Station"
+  },
+  "寶琳": {
+    "x": 844613.0,
+    "y": 820396.0,
+    "nameZH": "港鐵寶琳站",
+    "nameEN": "MTR Po Lam Station"
+  },
+  "坑口": {
+    "x": 845277.0,
+    "y": 819641.0,
+    "nameZH": "港鐵坑口站",
+    "nameEN": "MTR Hang Hau Station"
+  },
+  "將軍澳": {
+    "x": 844834.0,
+    "y": 818722.0,
+    "nameZH": "港鐵將軍澳站",
+    "nameEN": "MTR Tseung Kwan O Station"
+  },
+  "康城": {
+    "x": 845733.0,
+    "y": 817410.0,
+    "nameZH": "港鐵康城站",
+    "nameEN": "MTR LOHAS Park Station"
+  },
+  "荃灣": {
+    "x": 830213.0,
+    "y": 826038.0,
+    "nameZH": "港鐵荃灣站",
+    "nameEN": "MTR Tsuen Wan Station"
+  },
+  "大窩口": {
+    "x": 830926.0,
+    "y": 825732.0,
+    "nameZH": "港鐵大窩口站",
+    "nameEN": "MTR Tai Wo Hau Station"
+  },
+  "葵興": {
+    "x": 831566.0,
+    "y": 824881.0,
+    "nameZH": "港鐵葵興站",
+    "nameEN": "MTR Kwai Hing Station"
+  },
+  "葵芳": {
+    "x": 831212.0,
+    "y": 824186.0,
+    "nameZH": "港鐵葵芳站",
+    "nameEN": "MTR Kwai Fong Station"
+  },
+  "荔枝角": {
+    "x": 833289.0,
+    "y": 822021.0,
+    "nameZH": "港鐵荔枝角站",
+    "nameEN": "MTR Lai Chi Kok Station"
+  },
+  "長沙灣": {
+    "x": 834123.0,
+    "y": 821832.0,
+    "nameZH": "港鐵長沙灣站",
+    "nameEN": "MTR Cheung Sha Wan Station"
+  },
+  "深水埗": {
+    "x": 834748.0,
+    "y": 821316.0,
+    "nameZH": "港鐵深水埗站",
+    "nameEN": "MTR Sham Shui Po Station"
+  },
+  "佐敦": {
+    "x": 835730.0,
+    "y": 818428.0,
+    "nameZH": "港鐵佐敦站",
+    "nameEN": "MTR Jordan Station"
+  },
+  "尖沙咀": {
+    "x": 835784.0,
+    "y": 817641.0,
+    "nameZH": "港鐵尖沙咀站",
+    "nameEN": "MTR Tsim Sha Tsui Station"
+  },
+  "海洋公園": {
+    "x": 836005.0,
+    "y": 812215.0,
+    "nameZH": "港鐵海洋公園站",
+    "nameEN": "MTR Ocean Park Station"
+  },
+  "黃竹坑": {
+    "x": 835352.0,
+    "y": 812135.0,
+    "nameZH": "港鐵黃竹坑站",
+    "nameEN": "MTR Wong Chuk Hang Station"
+  },
+  "利東": {
+    "x": 834116.0,
+    "y": 811456.0,
+    "nameZH": "港鐵利東站",
+    "nameEN": "MTR Lei Tung Station"
+  },
+  "海怡半島": {
+    "x": 833378.0,
+    "y": 811567.0,
+    "nameZH": "港鐵海怡半島站",
+    "nameEN": "MTR South Horizons Station"
+  }
+}
