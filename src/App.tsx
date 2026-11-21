@@ -84,6 +84,7 @@ export default function App() {
         onSelectCamera={(key) => setSelection({ type: "camera", key })}
         onClear={() => setSelection(null)}
         onBasemapProblem={() => setBasemapProblem(true)}
+        onBasemapReady={() => setBasemapProblem(false)}
       />
       <Chrome
         network={network}

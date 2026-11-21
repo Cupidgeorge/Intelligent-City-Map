@@ -21,6 +21,7 @@ type MapViewProps = {
   onSelectCamera: (key: string) => void
   onClear: () => void
   onBasemapProblem: () => void
+  onBasemapReady: () => void
 }
 
 function lineFilter(visibleLines: string[]): FilterSpecification {
@@ -47,16 +48,23 @@ export function MapView({
   onSelectCamera,
   onClear,
   onBasemapProblem,
+  onBasemapReady,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<Map | null>(null)
   const camerasRef = useRef(cameras)
   const camerasOnRef = useRef(camerasVisible)
   const [mapReady, setMapReady] = useState(false)
-  const handlers = useRef({ onSelectStation, onSelectCamera, onClear, onBasemapProblem })
+  const handlers = useRef({
+    onSelectStation,
+    onSelectCamera,
+    onClear,
+    onBasemapProblem,
+    onBasemapReady,
+  })
   camerasRef.current = cameras
   camerasOnRef.current = camerasVisible
-  handlers.current = { onSelectStation, onSelectCamera, onClear, onBasemapProblem }
+  handlers.current = { onSelectStation, onSelectCamera, onClear, onBasemapProblem, onBasemapReady }
 
   useEffect(() => {
     const container = containerRef.current
@@ -78,14 +86,15 @@ export function MapView({
     map.addControl(new NavigationControl({ showCompass: false }), "top-right")
     mapRef.current = map
 
-    let loaded = false
-    const timer = window.setTimeout(() => {
-      if (!loaded) handlers.current.onBasemapProblem()
-    }, 12000)
+    map.on("error", (event) => {
+      const message = event.error instanceof Error ? event.error.message : ""
+      if (!map.isStyleLoaded() && /style|failed to fetch|network/i.test(message)) {
+        handlers.current.onBasemapProblem()
+      }
+    })
 
     map.on("load", () => {
-      loaded = true
-      window.clearTimeout(timer)
+      handlers.current.onBasemapReady()
       map.addSource("mtr-lines", { type: "geojson", data: lineFeatures(network) })
       map.addSource("stations", { type: "geojson", data: stationFeatures(network) })
       map.addSource("cameras", {
@@ -251,7 +260,6 @@ export function MapView({
     observer.observe(container)
 
     return () => {
-      window.clearTimeout(timer)
       observer.disconnect()
       setMapReady(false)
       map.remove()

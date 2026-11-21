@@ -50,7 +50,26 @@ function StationDetail({ network, code }: { network: Network; code: string }) {
     const controller = new AbortController()
     const key = `${station.code}:${refresh}`
     void Promise.all(
-      station.lines.map((line) => fetchLineSchedule(line, station.code, controller.signal)),
+      station.lines.map(async (line) => {
+        try {
+          return await fetchLineSchedule(line, station.code, controller.signal)
+        } catch (error) {
+          if (controller.signal.aborted || (error instanceof DOMException && error.name === "AbortError")) {
+            throw error
+          }
+          return {
+            line,
+            status: null,
+            message: "",
+            url: null,
+            delayed: false,
+            updatedAt: null,
+            up: [],
+            down: [],
+            error: "到站資料暫時取不到。請稍後再試。",
+          }
+        }
+      }),
     )
       .then((schedules) => {
         if (!controller.signal.aborted) setResult({ key, schedules })
@@ -207,11 +226,10 @@ function TrainList({
       <ul>
         {trains.map((train) => (
           <li key={`${train.seq}-${train.dest}-${train.time}`}>
-            <strong>{waitLabel(train.ttnt)}</strong>
+            <strong>{waitLabel(train.minutes)}</strong>
             <span>
               {train.dest ? `往${nameOf(train.dest)}` : "目的地待定"}
               {train.plat ? ` · 月台 ${train.plat}` : ""}
-              {!train.confirmed ? " · 待確認" : ""}
             </span>
             {clockTime(train.time) && <time>{clockTime(train.time)}</time>}
           </li>

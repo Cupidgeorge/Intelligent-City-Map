@@ -3,8 +3,7 @@ export type Train = {
   dest: string
   plat: string
   time: string
-  ttnt: number | null
-  confirmed: boolean
+  minutes: number | null
 }
 
 export type LineSchedule = {
@@ -24,8 +23,24 @@ type RawTrain = {
   dest?: string
   plat?: string
   time?: string
-  ttnt?: string
-  valid?: string
+}
+
+const HONG_KONG_OFFSET_MS = 8 * 60 * 60 * 1000
+
+export function minutesUntilArrival(time: string, now = new Date()): number | null {
+  const match = time.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/)
+  if (!match) return null
+  const year = Number(match[1])
+  const month = Number(match[2])
+  const day = Number(match[3])
+  const hour = Number(match[4])
+  const minute = Number(match[5])
+  const second = Number(match[6] ?? 0)
+  const arrivalUtc = Date.UTC(year, month - 1, day, hour, minute, second) - HONG_KONG_OFFSET_MS
+  if (!Number.isFinite(arrivalUtc)) return null
+  const remaining = (arrivalUtc - now.getTime()) / 60000
+  if (remaining <= 0) return 0
+  return Math.ceil(remaining)
 }
 
 type ScheduleBody = {
@@ -41,14 +56,13 @@ type ScheduleBody = {
 function parseTrains(trains: RawTrain[] | undefined): Train[] {
   return (trains ?? [])
     .map((train) => {
-      const minutes = Number(train.ttnt)
+      const time = train.time ?? ""
       return {
         seq: Number(train.seq ?? 0),
         dest: train.dest ?? "",
         plat: train.plat ?? "",
-        time: train.time ?? "",
-        ttnt: Number.isFinite(minutes) ? minutes : null,
-        confirmed: (train.valid ?? "Y").toUpperCase() === "Y",
+        time,
+        minutes: minutesUntilArrival(time),
       }
     })
     .sort((a, b) => a.seq - b.seq)
@@ -92,7 +106,13 @@ export async function fetchLineSchedule(
     return emptySchedule(line, "到站資料暫時取不到。請稍後再試。")
   }
 
-  const body = (await response.json()) as ScheduleBody
+  let body: ScheduleBody
+  try {
+    body = (await response.json()) as ScheduleBody
+  } catch (error) {
+    if (signal.aborted) throw error
+    return emptySchedule(line, "到站資料暫時取不到。請稍後再試。")
+  }
   const block = body.data?.[`${line}-${station}`] ?? Object.values(body.data ?? {})[0]
   const delayFlag = body.isdelay ?? body.Isdelay ?? "N"
   const link = body.url && body.url.startsWith("https://") ? body.url : null

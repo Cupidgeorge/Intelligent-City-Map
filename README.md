@@ -22,7 +22,7 @@
 
 ## 本機運行
 
-需要 Node.js 22 或更新版本。
+需要 Node.js 22.12 或更新版本。
 
 ```bash
 npm install
@@ -31,9 +31,10 @@ npm run dev
 
 開發伺服器位址是 `http://127.0.0.1:4731`。
 
-重新整理內置的車站和快拍清單：
+重新整理內置的車站和快拍清單前，先安裝 Python 套件 `pyproj`：
 
 ```bash
+pip install pyproj
 python3 scripts/build_network.py
 ```
 
